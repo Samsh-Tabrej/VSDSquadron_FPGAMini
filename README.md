@@ -62,7 +62,28 @@ Signal Name | Assigned Pin | Purpose
 ```hw_clk``` | 20 | Input clock signal
 ```testwire``` | 17 | Debugging/General-purpose signal
 <br/>
-Each of these pins must be carefully mapped to ensure correct operation within the FPGA design.
-
+These pin mappings ensure the correct hardware connections for controlling the RGB LED and monitoring test signals on the FPGA board. By ensuring the correct mapping, the module can drive the RGB LED and monitor internal operations effectively.
 
 ## 3. Integrating with the VSDSquadron FPGA Mini Board
+Install the required softwares and and setup the Linux environment as specified in the respective datasheet.<br/>
+To navigate through project directories in a UNIX environment, use the following commands:
+```
+cd
+cd VSDSquadron_FM
+cd blink_led
+```
+To make sure that the board is connected to the Oracle Virtual Machine. Perform below steps:<br/>
+  - Connect the board to your PC through USB-C.
+  - On the Virtual Machine, click on "Devices → USB → FTDI Single RS232-HS [0900]".
+  - To confirm if the board is connected to the USB, type the ```lsusb``` command in the terminal. It should show a line stating "Future Technology Devices International".
+<br/>To program the VSDSquadron FPGA Mini (FM) board, follow these steps:<br/>
+```make clean``` : To clean up previous builds.
+```make build``` : To build the binaries for the FPGA board.
+```sudo make flash``` : To flash the code to the external SRAM.
+
+## Final Output
+https://github.com/user-attachments/assets/7614b608-868a-4342-bf5e-127de2ef0eac
+
+
+
+
