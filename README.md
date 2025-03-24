@@ -78,10 +78,11 @@ To make sure that the board is connected to the Oracle Virtual Machine. Perform 
   - Connect the board to your PC through USB-C.
   - On the Virtual Machine, click on "Devices → USB → FTDI Single RS232-HS [0900]".
   - To confirm if the board is connected to the USB, type the ```lsusb``` command in the terminal. It should show a line stating "Future Technology Devices International".
-<br/>To program the VSDSquadron FPGA Mini (FM) board, follow these steps:<br/>
-```make clean``` : To clean up previous builds.
-```make build``` : To build the binaries for the FPGA board.
-```sudo make flash``` : To flash the code to the external SRAM.
+<br/><br/>
+To program the VSDSquadron FPGA Mini (FM) board, follow these steps:<br/>
+```make clean``` : To clean up previous builds.<br/>
+```make build``` : To build the binaries for the FPGA board.<br/>
+```sudo make flash``` : To flash the code to the external SRAM.<br/>
 
 ## Final Output
 https://github.com/user-attachments/assets/7614b608-868a-4342-bf5e-127de2ef0eac
