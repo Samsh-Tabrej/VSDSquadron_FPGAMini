@@ -84,6 +84,14 @@ To make sure that the board is connected to the Oracle Virtual Machine. Perform 
 ## Final Output
 https://github.com/user-attachments/assets/7614b608-868a-4342-bf5e-127de2ef0eac
 
+<br/> The verilog file and pcf file required to blink the RGB led are [RGB_blink.v](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/LED_Blink/RGB_blink.v) & [VSD_FM.pcf](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/LED_Blink/VSD_FM.pcf) respectively.<br/>
+#### Summary of the above verilog file:
+- The module uses an internal oscillator (```SB_HFOSC```) to generate a clock signal.
+- A 28-bit counter runs on this clock to create a time-dependent pattern.
+- The RGB LED driver (```SB_RGBA_DRV```) receives PWM signals derived from specific bits of the counter.
+- The LEDs blink in a specific pattern, alternating between red, green, and blue.
+<br/><br/>This is a simple FPGA-based blinking RGB LED circuit that can be used for debugging, status indication, or decorative lighting. 
+
 
 
 
