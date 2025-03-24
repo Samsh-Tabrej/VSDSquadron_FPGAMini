@@ -15,6 +15,8 @@ The VSDSquadron FPGA Mini (FM) board is an affordable, compact tool for prototyp
 - RGB LED for user-defined signaling
 - Onboard 3.3V and 1.2V power regulators, with the ability to supply 3.3V externally
 
+<br/>Further details about this FPGA can be known from its [datasheet](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/VSDSquadronFMDatasheet.pdf).
+
 # TASK-1
 ## 1. Understanding the Verilog Code<br/>
 The Verilog implementation is available in the GitHub repository at [LINK](https://github.com/thesourcerer8/VSDSquadron_FM/blob/main/led_blue/top.v). This repository includes various projects designed for the VSDSquadron_FM board, leveraging open-source FPGA tools for development. It showcases how to drive RGB LEDs using an internal oscillator and a counter-based approach to generate the required control signals.
@@ -52,7 +54,7 @@ The RGB LED is controlled via ```SB_RGBA_DRV```, with only the blue LED turned o
 
 ## 2. Creating the PCF File
 ### Pin Mapping and Functionality
-To ensure proper functionality, the pin assignments specified in the [PCF](https://github.com/thesourcerer8/VSDSquadron_FM/blob/main/led_blue/VSDSquadronFM.pcf) (Physical Constraints File) must be verified against the VSDSquadron FPGA Mini board datasheet. Below is an analysis of the assigned pins and their roles in the design.<br/>
+To ensure proper functionality, the pin assignments specified in the [PCF](https://github.com/thesourcerer8/VSDSquadron_FM/blob/main/led_blue/VSDSquadronFM.pcf) (Physical Constraints File) must be verified against the VSDSquadron FPGA Mini board [datasheet](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/VSDSquadronFMDatasheet.pdf). Below is an analysis of the assigned pins and their roles in the design.<br/>
 The following table summarizes the pin assignments:<br/>
 Signal Name | Assigned Pin | Purpose
 | :--- | ---: | :---:
