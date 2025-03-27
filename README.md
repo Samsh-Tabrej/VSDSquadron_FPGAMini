@@ -176,6 +176,7 @@ This data can be used for further processing in the Data Processing Block.
 Connected to FPGA GPIOs to indicate when data is being transmitted or received.
 
 ## FPGA Implementation of UART Loopback
+- Create the [top.v](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_loopback/top.v), [uart_trx.v](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_loopback/uart_trx.v), [Makefile](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_loopback/Makefile) and [VSDSquadron_FM.pcf](https://github.com/thesourcerer8/VSDSquadron_FM/blob/main/uart_loopback/VSDSquadronFM.pcf) files in a directory and execute the previous steps for FPGA implementation.
 - If the FPGA internally routes TX to RX in the design, then no external wiring is required. The data sent by the UART transmitter (TX) is internally fed back to the receiver (RX) within the FPGA.
 In Verilog, simply assign uartrx to uarttx. This routes TX data directly to RX inside the FPGA.
 - If the FPGA has a built-in USB-UART interface, it should automatically appear as a COM port in the PC.
