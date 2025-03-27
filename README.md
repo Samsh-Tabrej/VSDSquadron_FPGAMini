@@ -133,3 +133,68 @@ The transmission process follows a 4-state FSM:<br/>
 
 ## UART Top-Level Module
 This document explains the top-level UART module implemented in Verilog. It includes an external UART transmitter/receiver module (uart_trx.v), an internal oscillator, a frequency counter, and an RGB LED driver. The module is designed for serial communication and visual indication using an LED. Explaination of the 8N1 UART Top-Level [verilog code](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_loopback/top.v) is done below:<br/>
+### Module Breakdown
+#### Inputs:
+- ```hw_clk```: External hardware clock.
+- ```uartrx```: UART receive pin (data input).
+#### Outputs:
+- ```uarttx```: UART transmit pin (data output).
+- ```led_red```, ```led_blue```, ```led_green```: RGB LED control signals.
+
+### Internal Oscillator
+- The ```SB_HFOSC``` is an internal high-frequency oscillator (specific to Lattice FPGAs).
+- The parameter ```.CLKHF_DIV ("0b10")``` sets the oscillator frequency division.
+- ```CLKHFPU``` and ```CLKHFEN``` are set to ```1'b1``` to enable the oscillator.
+
+### UART Transmission Handling
+- Implements a loopback UART, where received UART data (```uartrx```) is directly transmitted (```uarttx```).
+
+### Frequency Counter
+- A 28-bit counter (```frequency_counter_i```) increments at every positive edge of ```int_osc```.
+- This can be used for baud rate generation, though additional logic is required.
+
+### RGB LED Driver
+- The ```SB_RGBA_DRV``` is a Lattice FPGA RGB LED driver.
+- ```RGB0PWM```, ```RGB1PWM```, and ```RGB2PWM``` are PWM inputs, controlled by ```uartrx```.
+- The actual LED pins (RGB0, RGB1, RGB2) are mapped to ```led_green```, ```led_blue```, and ```led_red```.
+- "```0b000001```" represents a small current level to control brightness.
+
+## Block Diagram
+![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/UART_Block.png)
+1. Clock Signal:
+An internal oscillator generates the system clock, which drives the baud rate generator.
+
+2. UART Transmission & Reception:
+The UART Transmitter converts parallel data into a serial data stream and sends it via the TX line.
+In a loopback setup, TX is directly connected to RX, meaning the transmitted data is fed back into the UART Receiver.
+
+3. UART Receiver & Processing:
+The UART Receiver converts the received serial data back into parallel format.
+This data can be used for further processing in the Data Processing Block.
+
+4. LED Indicators (Optional):
+Connected to FPGA GPIOs to indicate when data is being transmitted or received.
+
+## FPGA Implementation of UART Loopback
+- If the FPGA internally routes TX to RX in the design, then no external wiring is required. The data sent by the UART transmitter (TX) is internally fed back to the receiver (RX) within the FPGA.
+In Verilog, simply assign uartrx to uarttx. This routes TX data directly to RX inside the FPGA.
+- If the FPGA has a built-in USB-UART interface, it should automatically appear as a COM port in the PC.
+- To check the succesful implementation of loopback, a serial terminal is required. I used "minicom".
+
+#### Steps to test the UART loopback in minicom
+1. Installation
+```
+sudo apt update && sudo apt install minicom -y
+```
+2. Changing configuration settings
+```
+sudo minicom -s
+```
+![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/minicom1.png)
+3. In 'serial port setup' set 'Serial Device' as /dev/ttyUSB0 and save dfl.
+![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/minicom2.png)
+4. Press ctrl+A then Z for help on special keys
+![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/minicom3.png)
+5. Press 'Enter' then ctrl+A and then press key E to enable echo. If the UART loopback is successful then the typed input will be displayed twice on the screen.
+![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/minicom4.png)
+![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/Tested_UART.png)
