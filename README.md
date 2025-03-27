@@ -184,18 +184,18 @@ In Verilog, simply assign uartrx to uarttx. This routes TX data directly to RX i
 #### Steps to test the UART loopback in minicom
 1. Installation
 ```
-sudo apt update && sudo apt install minicom -y
+sudo apt-get install minicom
 ```
 2. Changing configuration settings
 ```
 sudo minicom -s
 ```
 ![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/minicom1.png)
-<br/>3. In 'serial port setup' set 'Serial Device' as /dev/ttyUSB0 and save dfl.<br/>
+<br/><br/>3. In 'serial port setup' set 'Serial Device' as /dev/ttyUSB0 and save dfl.<br/>
 ![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/minicom2.png)
-<br/>4. Press ctrl+A then Z for help on special keys<br/>
+<br/><br/>4. Press ctrl+A then Z for help on special keys<br/>
 ![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/minicom3.png)
-<br/>5. Press 'Enter' then ctrl+A and then press key E to enable echo. If the UART loopback is successful then the typed input will be displayed twice on the screen.<br/>
+<br/><br/>5. Press 'Enter' then ctrl+A and then press key E to enable echo. If the UART loopback is successful then the typed input will be displayed twice on the screen.<br/>
 ![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/minicom4.png)
 ![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/Tested_UART.png)
 
