@@ -179,7 +179,7 @@ Connected to FPGA GPIOs to indicate when data is being transmitted or received.
 - If the FPGA internally routes TX to RX in the design, then no external wiring is required. The data sent by the UART transmitter (TX) is internally fed back to the receiver (RX) within the FPGA.
 In Verilog, simply assign uartrx to uarttx. This routes TX data directly to RX inside the FPGA.
 - If the FPGA has a built-in USB-UART interface, it should automatically appear as a COM port in the PC.
-- To check the succesful implementation of loopback, a serial terminal is required. I used "minicom".
+- To check the successful implementation of loopback, a serial terminal is required. I used "minicom".
 
 #### Steps to test the UART loopback in minicom
 1. Installation
@@ -191,10 +191,15 @@ sudo apt update && sudo apt install minicom -y
 sudo minicom -s
 ```
 ![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/minicom1.png)
-3. In 'serial port setup' set 'Serial Device' as /dev/ttyUSB0 and save dfl.
+<br/>3. In 'serial port setup' set 'Serial Device' as /dev/ttyUSB0 and save dfl.<br/>
 ![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/minicom2.png)
-4. Press ctrl+A then Z for help on special keys
+<br/>4. Press ctrl+A then Z for help on special keys<br/>
 ![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/minicom3.png)
-5. Press 'Enter' then ctrl+A and then press key E to enable echo. If the UART loopback is successful then the typed input will be displayed twice on the screen.
+<br/>5. Press 'Enter' then ctrl+A and then press key E to enable echo. If the UART loopback is successful then the typed input will be displayed twice on the screen.<br/>
 ![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/minicom4.png)
 ![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/Tested_UART.png)
+
+## Final Output:
+https://github.com/user-attachments/assets/be52204f-ea85-4a7b-9ef9-89f70152ecd3
+
+
