@@ -93,8 +93,43 @@ https://github.com/user-attachments/assets/7614b608-868a-4342-bf5e-127de2ef0eac
 - A 28-bit counter runs on this clock to create a time-dependent pattern.
 - The RGB LED driver (```SB_RGBA_DRV```) receives PWM signals derived from specific bits of the counter.
 - The LEDs blink in a specific pattern, alternating between red, green, and blue.
-<br/><br/>This is a simple FPGA-based blinking RGB LED circuit that can be used for debugging, status indication, or decorative lighting. 
+<br/><br/>This is a simple FPGA-based blinking RGB LED circuit that can be used for debugging, status indication, or decorative lighting. <br/><br/>
 
 
+# Task-2
+## UART Transmitter Module (8N1)
+This document explains the 8N1 UART Transmitter Module written in Verilog. The module is designed to transmit serial data in an 8 data bits, No parity, 1 stop bit (8N1) format. It follows a state machine approach to control data transmission over a UART-compatible serial interface. Explaination of the 8N1 UART Tx [verilog code](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/tree/main/uart_loopback/uart_trx.v) is done below:<br/>
+### Module Breakdown
+#### Inputs:
+- ```clk```: System clock for synchronizing transmission.<br/>
+- ```txbyte[7:0]```: The 8-bit data byte to be transmitted.<br/>
+- ```senddata```: A control signal that initiates transmission.<br/>
+#### Outputs:
+- ```tx```: The serial output line (to be connected to a receiver).<br/>
+- ```txdone```: A flag that indicates transmission completion.<br/>
+#### Internal Registers:
+- ```state```: Holds the current FSM state.<br/>
+- ```buf_tx```: A shift register that holds the byte to be transmitted.<br/>
+- ```bits_sent```: A counter to track the number of transmitted bits.<br/>
+- ```txbit```: Holds the current bit to be transmitted.<br/>
 
+### Finite State Machine (FSM)
+The transmission process follows a 4-state FSM:<br/>
+#### 1. STATE_IDLE (0)
+- TX line remains HIGH (idle state).
+- Waits for ```senddata``` signal to start transmission.
+- If ```senddata = 1```, it loads txbyte into ```buf_tx``` and moves to ```STATE_STARTTX```.
+#### 2. STATE_STARTTX (1)
+- Transmits the start bit (0) to indicate the beginning of a byte transmission.
+- Moves to ```STATE_TXING```.
+#### 3. STATE_TXING (2)
+- Sends the 8 data bits LSB-first using ```buf_tx```.
+- Shifts the buffer after each clock cycle.
+- Once all bits are transmitted, moves to ```STATE_TXDONE```.
+#### 4. STATE_TXDONE (3)
+- Transmits the stop bit (1) to indicate the end of the byte transmission.
+- Sets ```txdone = 1``` to notify that transmission is complete.
+- Returns to ```STATE_IDLE``` for the next transmission.
 
+## UART Top-Level Module
+This document explains the top-level UART module implemented in Verilog. It includes an external UART transmitter/receiver module (uart_trx.v), an internal oscillator, a frequency counter, and an RGB LED driver. The module is designed for serial communication and visual indication using an LED. Explaination of the 8N1 UART Top-Level [verilog code](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_loopback/top.v) is done below:<br/>
