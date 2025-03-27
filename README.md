@@ -3,7 +3,7 @@ The VSDSquadron FPGA Mini (FM) board is an affordable, compact tool for prototyp
 ![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/FPGA_label.png)<br/>
 
 # Block Diagram
-![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/block_diag.png)<br/>
+![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/UART_Block.png)<br/>
 
 <br/>The VSDSquadron FPGA Mini (FM) board features the Lattice ICE40UP5K FPGA with the following capabilities:
 - 48-lead QFN package
