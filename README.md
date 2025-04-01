@@ -206,7 +206,7 @@ https://github.com/user-attachments/assets/be52204f-ea85-4a7b-9ef9-89f70152ecd3
 
 # Task-3
 ## Introduction
-The 8N1 UART Transmitter Module is a Verilog-based design that implements a simple Universal Asynchronous Receiver Transmitter (UART) transmitter with an 8-bit data frame, No parity, and 1 stop bit (8N1). This module is responsible for transmitting a byte of data serially through a tx (transmit) wire, following the standard UART protocol. [Here](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_tx/uart_tx.v) is the detailed description of the UART transmission module in Verilog HDL.
+The 8N1 UART Transmitter Module is a Verilog-based design that implements a simple Universal Asynchronous Receiver Transmitter (UART) transmitter with an 8-bit data frame, No parity, and 1 stop bit (8N1). This module is responsible for transmitting a byte of data serially through a tx (transmit) wire, following the standard UART protocol. Here is the detailed description of the UART transmission module([uart_tx.v](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_tx/uart_tx.v)) in Verilog HDL.
 
 ### Port Descriptions
 Signal | Direction | Description
@@ -239,3 +239,8 @@ The transmission process follows these steps:<br/>
 - Data Bit Transmission: The state moves to ```STATE_TXING```, where each bit of the ```txbyte``` is transmitted serially, LSB first.
 - Stop Bit Transmission: Once all 8 data bits are sent, a stop bit (1) is transmitted.
 - Completion: The ```txdone``` flag is set high, and the state returns to ```STATE_IDLE```.
+
+# Final Output
+https://github.com/user-attachments/assets/0af575db-8860-4baf-b73c-0156d5b8fc0a
+
+
