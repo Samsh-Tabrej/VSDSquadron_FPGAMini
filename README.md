@@ -18,6 +18,7 @@ The VSDSquadron FPGA Mini (FM) board is an affordable, compact tool for prototyp
 <br/>Further details about this FPGA can be known from its [datasheet](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/VSDSquadronFMDatasheet.pdf).
 
 # TASK-1
+*Objective* - To understand and document the provided Verilog code for LED blinking, create the necessary PCF file, and integrate the design with the VSDSquadron FPGA Mini board using the provided datasheet. (install tools as explained in datasheet)
 ## 1. Understanding the Verilog Code<br/>
 The Verilog implementation is available in the GitHub repository at [LINK](https://github.com/thesourcerer8/VSDSquadron_FM/blob/main/led_blue/top.v). This repository includes various projects designed for the VSDSquadron_FM board, leveraging open-source FPGA tools for development. It showcases how to drive RGB LEDs using an internal oscillator and a counter-based approach to generate the required control signals.
 ### Purpose of the Module:<br/>
@@ -97,6 +98,7 @@ https://github.com/user-attachments/assets/7614b608-868a-4342-bf5e-127de2ef0eac
 
 
 # Task-2
+*Objective* - To implement a UART loopback mechanism where transmitted data is immediately received back, facilitating testing of UART functionality.
 ## UART Transmitter Module (8N1)
 This document explains the 8N1 UART Transmitter Module written in Verilog. The module is designed to transmit serial data in an 8 data bits, No parity, 1 stop bit (8N1) format. It follows a state machine approach to control data transmission over a UART-compatible serial interface. Explaination of the 8N1 UART Tx [verilog code](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/tree/main/uart_loopback/uart_trx.v) is done below:<br/>
 ### Module Breakdown
@@ -205,6 +207,7 @@ https://github.com/user-attachments/assets/be52204f-ea85-4a7b-9ef9-89f70152ecd3
 
 
 # Task-3
+*Objective* - Develop a UART transmitter module capable of sending serial data from the FPGA to an external device.
 ## Introduction
 The 8N1 UART Transmitter Module is a Verilog-based design that implements a simple Universal Asynchronous Receiver Transmitter (UART) transmitter with an 8-bit data frame, No parity, and 1 stop bit (8N1). This module is responsible for transmitting a byte of data serially through a tx (transmit) wire, following the standard UART protocol. Here is the detailed description of the UART transmission module([uart_tx.v](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_tx/uart_tx.v)) in Verilog HDL.
 
