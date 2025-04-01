@@ -240,7 +240,27 @@ The transmission process follows these steps:<br/>
 - Stop Bit Transmission: Once all 8 data bits are sent, a stop bit (1) is transmitted.
 - Completion: The ```txdone``` flag is set high, and the state returns to ```STATE_IDLE```.
 
+# Block Diagram and Circuit Diagram
+![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/UART_Tx_block.png)
+![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/UART_Tx_ckt.png)
+
+# FPGA Implementation and Verification of UART Tx
+- Create the [top.v](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_tx/top.v), [uart_tx.v](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_tx/uart_tx.v), [Makefile](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_tx/Makefile) and [VSDSquadronFM.pcf](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_tx/VSDSquadronFM.pcf) files in a directory and execute the previous steps for FPGA implementation.
+- The FPGA board includes a built-in USB-UART bridge so it will automatically appear as a COM port on a PC.
+- The TX data can be monitored using a serial terminal like PuTTY.
+- This task demonstrates how to establish communication between an FPGA and a computer using a USB-C cable via the UART protocol. The FPGA continuously transmits the character 'D' in an infinite loop. Since this implementation is transmit-only, pressing keys on the keyboard will have no effect on the output. The design does not include a receive function, meaning the FPGA does not process or respond to any data sent from the PC.
+<br/><br/>
+To verify the UART communication, PuTTY need to be installed which is a free and open-source terminal emulator.
+#### Installation & Setup:
+- Download the appropriate MSI (Windows Installer) package based on the system architecture.
+- Install PuTTY and launch the application.
+- In PuTTY, select "Serial" as the connection type.
+- Check which COM port is assigned to the FPGA by opening the Device Manager on the PC. (In my case, it was assigned to COM4.)
+  ![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/COM4_port.png)
+- Enter the detected COM port in PuTTY and click "Open" to start the session.
+(Before running PuTTY one must disconnect the FPGA board from the Virtual box. But the FPGA must be physically connected with the computer with the USB cable.)
+<br/><br/>
+If everything is set up correctly, the character 'D' should continuously appear in PuTTY, confirming successful transmission.
+
 # Final Output
 https://github.com/user-attachments/assets/0af575db-8860-4baf-b73c-0156d5b8fc0a
-
-
