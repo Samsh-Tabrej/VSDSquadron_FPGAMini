@@ -204,3 +204,38 @@ sudo minicom -s
 https://github.com/user-attachments/assets/be52204f-ea85-4a7b-9ef9-89f70152ecd3
 
 
+# Task-3
+## Introduction
+The 8N1 UART Transmitter Module is a Verilog-based design that implements a simple Universal Asynchronous Receiver Transmitter (UART) transmitter with an 8-bit data frame, No parity, and 1 stop bit (8N1). This module is responsible for transmitting a byte of data serially through a tx (transmit) wire, following the standard UART protocol. [Here](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_tx/uart_tx.v) is the detailed description of the UART transmission module in Verilog HDL.
+
+### Port Descriptions
+Signal | Direction | Description
+| :--- | ---: | :---:
+```clk``` | Input | System clock signal
+```txbyte``` | Input | 8-bit data to be transmitted
+```senddata``` | Input | Start transmission when high
+```txdone``` | Output | Goes high when transmission completes
+```tx``` | Output | Serial data output
+
+### Parameters and State Variables:
+The design uses four states to control the UART transmission process:<br/>
+```
+    parameter STATE_IDLE=8'd0;
+    parameter STATE_STARTTX=8'd1;
+    parameter STATE_TXING=8'd2;
+    parameter STATE_TXDONE=8'd3;
+```
+### Registers Used
+- ```state``` : Stores the current state of transmission
+- ```buf_tx``` : Temporary buffer to hold the byte being transmitted
+- ```bits_sent``` : Counter for the number of bits sent
+- ```txbit``` : Holds the current output bit value
+- ```txdone``` : Flag indicating the end of transmission
+
+### Operation of the Module
+The transmission process follows these steps:<br/>
+- IDLE State: The system remains in the ```STATE_IDLE``` state while waiting for ```senddata``` to go high.
+- Start Bit Transmission: When ```senddata``` is received, the state transitions to ```STATE_STARTTX```, where the start bit (0) is sent.
+- Data Bit Transmission: The state moves to ```STATE_TXING```, where each bit of the ```txbyte``` is transmitted serially, LSB first.
+- Stop Bit Transmission: Once all 8 data bits are sent, a stop bit (1) is transmitted.
+- Completion: The ```txdone``` flag is set high, and the state returns to ```STATE_IDLE```.
