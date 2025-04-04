@@ -270,7 +270,7 @@ https://github.com/user-attachments/assets/0af575db-8860-4baf-b73c-0156d5b8fc0a
 
 # Task-4
 *Objective* - Implement a UART transmitter that sends data based on sensor inputs, enabling the FPGA to communicate real-time sensor data to an external device.
-## Overview
+# Overview
 This document explains the Verilog implementation of a UART (Universal Asynchronous Receiver Transmitter) Transmitter module with the 8N1 configuration [uart_trx.v](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_tx_sense/uart_trx.v). This is a transmit-only module, meaning it sends serial data over a single tx line. The module includes logic for Start bit generation, 8-bit data transmission (LSB first), Stop bit generation & State machine-based control for sequential UART behavior.
 
 ## Port Descriptions
@@ -333,7 +333,12 @@ To transmit real sensor data, you would need to:
 - Store the data in txbyte, and
 - Trigger senddata based on sampling conditions.
 
-## FPGA Implementation and Verification
+# Block Diagram
+![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/UART_sense_block.png)
+# Circuit Diagram
+![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/UART_sense_ckt.png)
+
+# FPGA Implementation and Verification
 - Create the [top.v](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_tx_sense/top.v), [uart_trx.v](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_tx_sense/uart_trx.v), [Makefile](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_tx_sense/Makefile) and [VSDSquadronFM.pcf](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/uart_tx_sense/VSDSquadronFM.pcf) files in a directory and execute the previous steps for FPGA implementation.
 - The FPGA board includes a built-in USB-UART bridge so it will automatically appear as a COM port on a PC.
 - The TX data can be monitored using a serial terminal like PuTTY.
@@ -341,6 +346,6 @@ To transmit real sensor data, you would need to:
 
 To verify the UART communication, PuTTY need to be installed which is a free and open-source terminal emulator. Hence, follow the previous steps mentioned in Task-3.
 
-## Final Output
+# Final Output
 https://github.com/user-attachments/assets/7cc053a5-4748-454d-b978-4f48c85f881e
 
