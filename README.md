@@ -350,6 +350,7 @@ To verify the UART communication, PuTTY need to be installed which is a free and
 https://github.com/user-attachments/assets/7cc053a5-4748-454d-b978-4f48c85f881e
 
 # Task-5
+*Objective*
 - Conduct comprehensive research on Real-Time Sensor Data Acquisition and Transmission System.​ This theme focuses on developing systems that interface with various sensors to collect data, process it using the FPGA, and transmit the information to external devices through communication protocols like UART.
 - Formulate a detailed project proposal outlining the system's functionality, required components, and implementation strategy.
 
@@ -435,3 +436,21 @@ Signal	| Description
 ![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/sensor_block.png)
 # Circuit Diagram
 ![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/sensor_ckt.png)
+
+# Hardware Testing
+### Wiring:
+TRIG → HC-SR04 TRIG, ECHO → HC-SR04 ECHO.
+5 V to sensor VCC, common GND.
+FPGA’s UARTTX → USB–Serial RX.
+
+### Serial Terminal:
+9600 baud, 8 data bits, no parity, 1 stop bit.
+
+### Measuring Distance:
+Place an object ~10 cm away from the sensor.
+Terminal should display a reading around “00010” .
+Move the object closer or farther to see changing values.
+
+# Final Output
+https://github.com/user-attachments/assets/3cb1adab-4e19-45b3-a9dc-023486a66622
+
