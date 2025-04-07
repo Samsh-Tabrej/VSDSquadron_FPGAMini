@@ -349,3 +349,89 @@ To verify the UART communication, PuTTY need to be installed which is a free and
 # Final Output
 https://github.com/user-attachments/assets/7cc053a5-4748-454d-b978-4f48c85f881e
 
+# Task-5
+- Conduct comprehensive research on Real-Time Sensor Data Acquisition and Transmission System.​ This theme focuses on developing systems that interface with various sensors to collect data, process it using the FPGA, and transmit the information to external devices through communication protocols like UART.
+- Formulate a detailed project proposal outlining the system's functionality, required components, and implementation strategy.
+
+# Overview
+## Module 1: hc_sr04 – HC-SR04 Ultrasonic Distance Sensor Interface
+Implements a state machine to control the HC-SR04 ultrasonic sensor:
+- Sends a 10µs pulse on ```TRIG```
+- Waits for ```ECHO``` pulse
+- Measures time duration of ```ECHO``` pulse
+- Converts time into distance (in cm)
+
+### Inputs:
+Signal | Width | Description
+| :--- | ---: | :---:
+```clk```	| 1-bit |	12 MHz system clock
+```measure```	| 1-bit |	Input trigger to begin a measurement
+```echo``` | 1-bit	| Echo input from HC-SR04
+
+### Outputs:
+Signal	| Width |	Description
+| :--- | ---: | :---:
+```state```	| 2-bits |	Current state of FSM (for debugging)
+```ready``` |	1-bit |	HIGH if in IDLE state
+```trig```	| 1-bit |	Output trigger to sensor
+```distanceRAW```	| 24-bits	| Raw pulse width count during echo
+```distance_cm```	| 16-bits	| Final computed distance in cm
+
+```
+parameter ten_us = 10'd120;
+```
+- For 12 MHz clock: 12 ticks = 1 µs ⇒ 120 ticks = 10 µs pulse
+
+### FSM States:
+State	| Code	| Description
+| :--- | ---: | :---:
+```IDLE```	| 00	| Waiting for trigger
+```TRIGGER```	| 01m |	Sending 10µs TRIG pulse
+```WAIT```	| 11 |	Waiting for ECHO high
+```COUNTECHO``` |	10 |	Counting cycles during ECHO high
+
+- Transitions based on state and inputs (```measure```, ```echo```)
+- IDLE → TRIGGER → WAIT → COUNTECHO → IDLE
+```
+assign trig = (state == TRIGGER);
+```
+- TRIG is HIGH only during ```TRIGGER``` state (~10 µs)
+
+### Measuring Echo Pulse Width:
+- In ```WAIT```: resets ```distanceRAW```
+- In ```COUNTECHO```: increments ```distanceRAW``` every cycle when ```echo``` is HIGH
+Distance Conversion:
+```
+distance_cm <= (distanceRAW * 34300) / (2 * 12000000);
+```
+- Speed of sound = 34300 cm/s
+- ```distanceRAW``` is the number of 12MHz cycles
+- Formula converts time to distance (divided by 2 because sound travels to object and back)
+
+## Module 2: refresher250ms – Periodic Trigger Generator
+Generates a ```measure``` pulse every ~50ms (or 250ms if modified), used to trigger ultrasonic measurement at fixed intervals.
+### Inputs:
+Signal	| Description
+| :--- | ---:
+```clk```	| 12 MHz system clock
+```en```	| Enable periodic trigger generation
+
+### Outputs:
+Signal	| Description
+| :--- | ---:
+```measure``` |	Single-cycle HIGH pulse every N ms
+
+### Counter Logic:
+```reg [18:0] counter;```
+- For 50ms pulse at 12MHz: 12,000,000 × 0.05 = 600,000 cycles
+- For 250ms pulse: 12,000,000 × 0.25 = 3,000,000 cycles
+
+### Counter Behavior:
+- If ```en == 0``` or ```counter == 600000```: reset counter
+- Otherwise: increment counter
+- ```measure``` goes HIGH when counter equals 1 (1-cycle pulse)
+
+# Block Diagram
+![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/sensor_block.png)
+# Circuit Diagram
+![](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/Media/sensor_ckt.png)
