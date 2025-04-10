@@ -355,6 +355,7 @@ https://github.com/user-attachments/assets/7cc053a5-4748-454d-b978-4f48c85f881e
 - Formulate a detailed project proposal outlining the system's functionality, required components, and implementation strategy.
 
 # Overview
+Here is the explanation for the verilog code [ultra_sonic.v](https://github.com/Samsh-Tabrej/VSDSquadron_FPGAMini/blob/main/sensor_acquisition/ultrasonic.v).
 ## Module 1: hc_sr04 – HC-SR04 Ultrasonic Distance Sensor Interface
 Implements a state machine to control the HC-SR04 ultrasonic sensor:
 - Sends a 10µs pulse on ```TRIG```
