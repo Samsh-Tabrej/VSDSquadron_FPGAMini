@@ -349,7 +349,7 @@ To verify the UART communication, PuTTY need to be installed which is a free and
 # Final Output
 https://github.com/user-attachments/assets/7cc053a5-4748-454d-b978-4f48c85f881e
 
-# Task-5
+# Task-5 and Task-6
 *Objective*
 - Conduct comprehensive research on Real-Time Sensor Data Acquisition and Transmission System.​ This theme focuses on developing systems that interface with various sensors to collect data, process it using the FPGA, and transmit the information to external devices through communication protocols like UART.
 - Formulate a detailed project proposal outlining the system's functionality, required components, and implementation strategy.
@@ -439,18 +439,17 @@ Signal	| Description
 
 # Hardware Testing
 ### Wiring:
-TRIG → HC-SR04 TRIG, ECHO → HC-SR04 ECHO.
-5 V to sensor VCC, common GND.
-FPGA’s UARTTX → USB–Serial RX.
+- PIN 4 → HC-SR04 TRIG, PIN 3 → HC-SR04 ECHO.
+- 5 V to sensor VCC, common GND.
+- FPGA’s UARTTX → USB–Serial RX.
 
 ### Serial Terminal:
-9600 baud, 8 data bits, no parity, 1 stop bit.
+- 9600 baud, 8 data bits, no parity, 1 stop bit.
 
 ### Measuring Distance:
-Place an object ~10 cm away from the sensor.
-Terminal should display a reading around “00010” .
-Move the object closer or farther to see changing values.
+- with command ```sudo make terminal```, a serial terminal opens up which shows the distance.
 
 # Final Output
-https://github.com/user-attachments/assets/3cb1adab-4e19-45b3-a9dc-023486a66622
+https://github.com/user-attachments/assets/1561852e-dc08-426b-9c1d-2f24c40d928f
+
 
